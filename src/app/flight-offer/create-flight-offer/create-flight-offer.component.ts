@@ -4,8 +4,10 @@ import { ShowFlightOfferComponent } from '../show-flight-offer/show-flight-offer
 import { IFlightOffer } from 'src/app/models/flight-offer.model';
 import { ILocation } from 'src/app/models/location.model';
 import { ILocationData } from 'src/app/models/location.model';
+import { IFlightSearchData } from 'src/app/models/flight-offer.model';
 import { Observable, of } from 'rxjs';
 import { LowCostFlightApiService } from 'src/app/low-cost-flight-api.service';
+import { SearchParams } from 'src/app/models/flight-param';
 
 @Component({
   selector: 'app-create-flight-offer',
@@ -23,6 +25,12 @@ export class CreateFlightOfferComponent implements OnInit {
   toLocationList: ILocationData[]=[];
   destination:any
   departureDateTemplate:boolean = false;
+  departureDate:string ="";
+  returnDate:string="";
+  adults:number=0;
+  nonStop:boolean = false;
+  flightOffersList: IFlightSearchData[]=[];
+  showTable: boolean = false;
 
   constructor(private service: LowCostFlightApiService) { }
 
@@ -58,6 +66,19 @@ export class CreateFlightOfferComponent implements OnInit {
     this.departureDateTemplate = true;
   }
 
-  // Od tud zovemo obje service metode te se na njih pretplačujemo
+  onFindFlight(){
+    if(this.departureDate && this.returnDate == ""){
+      alert("Please choose a date")
+    }else{
+        let searchParams = new SearchParams(this.origin.iataCode,this.destination.iataCode,this.departureDate,
+            this.returnDate,this.adults,this.nonStop);
+        this.service.getFlightOffer(searchParams).subscribe( res=> {
+          console.log(res.data);
+        });
+        this.departureDateTemplate = false;
+        this.showTable = true;
+      }
+    }
+  }
 
-}
+  // Od tud zovemo obje service metode te se na njih pretplačujem

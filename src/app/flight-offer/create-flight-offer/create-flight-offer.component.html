@@ -22,6 +22,22 @@
                 <div class="card-footer">Iata code: {{Location.iataCode}} </div>
               </div>
             </div>
-
-
+            <div *ngIf="departureDateTemplate">
+              <label for=""><h3>Departure date:</h3></label>
+              <input type="date" class="form-control" name="departureDate" [(ngModel)]="departureDate">
+              <br>
+              <label for=""><h3>Return date:</h3></label>
+              <input type="date" class="form-control" name="returnDate" [(ngModel)]="returnDate">
+              <br>
+              <label for=""><h3>Number of adults</h3></label>
+              <input type="number" class="form-control" name="adults" [(ngModel)]="adults">
+              <br>
+              <label class="form-check-label fw7 h5 mb0">
+                Without stopping?
+                <input type="checkbox" [checked]="nonStop" class="form-check-input">
+              </label>
+              <br>
+              <button class="btn btn-secondary" (click)="onFindFlight()" [ngStyle]="{'width': '100%'}">Find Flights</button>
+            </div>
     </form>
+    <app-show-flight-offer *ngIf="showTable"></app-show-flight-offer>  
