@@ -1,0 +1,27 @@
+<h1><strong>Find flight deals around the world</strong></h1>
+    <hr>
+    <form>
+            <div *ngIf="fromLocationTemplate">
+                <label for=""><h3>From where:</h3></label>
+                <input type="text" class="form-control" name="from" [(ngModel)]="from" (keypress)="handleFromLocation()">
+                <small>City or Airport search E.g. London</small>
+                <div class="card mb-3 mt-3" *ngFor="let Location of locationList" (click)="handleOrigin(Location)">
+                    <div class="card-header"><b>Name:</b> {{ Location.name }}</div>
+                    <div class="card-body">City Name: {{ Location.address.cityName }}
+                    </div>
+                    <div class="card-footer"><b>Iata code:</b> {{ Location.iataCode }}</div>
+                  </div>
+            </div>
+            <div *ngIf="toLocationTemplate">
+              <label for=""><h3>To where:</h3></label>
+              <input type="text" class="form-control" name="to" [(ngModel)]="to" (keypress)="handleToLocation()">
+              <small>City or Airport search</small>
+              <div class="card mb-3 mt-3" *ngFor="let Location of toLocationList" (click)="handleDestination(Location)">
+                <div class="card-header"><b>Name:</b> {{Location.name}} </div>
+                <div class="card-body">City Name: {{Location.address.cityName}}</div>
+                <div class="card-footer">Iata code: {{Location.iataCode}} </div>
+              </div>
+            </div>
+
+
+    </form>
