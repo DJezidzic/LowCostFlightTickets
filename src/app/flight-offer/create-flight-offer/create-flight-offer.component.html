@@ -40,4 +40,4 @@
               <button class="btn btn-secondary" (click)="onFindFlight()" [ngStyle]="{'width': '100%'}">Find Flights</button>
             </div>
     </form>
-    <app-show-flight-offer *ngIf="showTable"></app-show-flight-offer>  
+    <app-show-flight-offer *ngIf="showTable" [params]="searchParams" [result]="flightOffersList"></app-show-flight-offer>  

@@ -31,6 +31,7 @@ export class CreateFlightOfferComponent implements OnInit {
   nonStop:boolean = false;
   flightOffersList: IFlightSearchData[]=[];
   showTable: boolean = false;
+  searchParams:SearchParams = new SearchParams("","","","",0,false)
 
   constructor(private service: LowCostFlightApiService) { }
 
@@ -70,10 +71,11 @@ export class CreateFlightOfferComponent implements OnInit {
     if(this.departureDate && this.returnDate == ""){
       alert("Please choose a date")
     }else{
-        let searchParams = new SearchParams(this.origin.iataCode,this.destination.iataCode,this.departureDate,
+        this.searchParams = new SearchParams(this.origin.iataCode,this.destination.iataCode,this.departureDate,
             this.returnDate,this.adults,this.nonStop);
-        this.service.getFlightOffer(searchParams).subscribe( res=> {
-          console.log(res.data);
+        this.service.getFlightOffer(this.searchParams).subscribe( res=> {
+          //console.log(res.data);
+          this.flightOffersList=res.data;
         });
         this.departureDateTemplate = false;
         this.showTable = true;

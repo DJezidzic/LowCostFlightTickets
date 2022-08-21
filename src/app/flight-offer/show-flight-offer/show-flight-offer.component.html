@@ -1,1 +1,26 @@
-<p>show-flight-offer works!</p>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Departure</th>
+        <th scope="col">Destination</th>
+        <th scope="col">Departure date</th>
+        <th scope="col">Destination date</th>
+        <th scope="col">Num of stops</th>
+        <th scope="col">Adults</th>
+        <th scope="col">Price</th>
+        <th scope="col">Currency</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let flight of result">
+        <td *ngI>{{params.location}}</td>
+        <td>{{params.destination}}</td>
+        <td>{{params.departureDate}}</td>
+        <td>{{params.returnDate}}</td>
+        <td>{{flight.itineraries[0].segments[0].numberOfStops}}</td>
+        <td>{{params.adults}}</td>
+        <td>{{flight.price.grandTotal}}</td>
+        <td>{{flight.price.currency}}</td>
+      </tr>
+    </tbody>
+  </table>
