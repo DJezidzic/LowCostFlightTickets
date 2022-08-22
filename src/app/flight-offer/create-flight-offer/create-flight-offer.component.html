@@ -1,6 +1,6 @@
 <h1><strong>Find flight deals around the world</strong></h1>
     <hr>
-    <form>
+    <form >
             <div *ngIf="fromLocationTemplate">
                 <label for=""><h3>From where:</h3></label>
                 <input type="text" class="form-control" name="from" [(ngModel)]="from" (keypress)="handleFromLocation()">
@@ -40,4 +40,5 @@
               <button class="btn btn-secondary" (click)="onFindFlight()" [ngStyle]="{'width': '100%'}">Find Flights</button>
             </div>
     </form>
-    <app-show-flight-offer *ngIf="showTable" [params]="searchParams" [result]="flightOffersList"></app-show-flight-offer>  
+    <app-show-flight-offer *ngIf="showTable" [params]="searchParams"
+    [result]="flightOffersList" (onChildCallReset)="onChildCallReset()"></app-show-flight-offer>

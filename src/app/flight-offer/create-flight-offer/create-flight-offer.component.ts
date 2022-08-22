@@ -80,7 +80,15 @@ export class CreateFlightOfferComponent implements OnInit {
         this.departureDateTemplate = false;
         this.showTable = true;
       }
-    }
   }
+  onChildCallReset(){
+
+    this.flightOffersList=[];
+    this.showTable =false;
+    this.fromLocationTemplate = true;
+  }
+}
+
+
 
   // Od tud zovemo obje service metode te se na njih pretplačujem

@@ -13,7 +13,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let flight of result">
-        <td *ngI>{{params.location}}</td>
+        <td>{{params.location}}</td>
         <td>{{params.destination}}</td>
         <td>{{params.departureDate}}</td>
         <td>{{params.returnDate}}</td>
@@ -24,3 +24,5 @@
       </tr>
     </tbody>
   </table>
+
+  <button class="btn btn-secondary" (click)="resetSearch()" [ngStyle]="{'width': '100%'}">Reset search</button>
