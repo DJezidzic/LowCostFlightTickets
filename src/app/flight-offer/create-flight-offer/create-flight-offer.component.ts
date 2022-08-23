@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, QueryList } from '@angular/core';
 import { FlightOfferComponent } from '../flight-offer.component';
 import { ShowFlightOfferComponent } from '../show-flight-offer/show-flight-offer.component';
 import { IFlightOffer } from 'src/app/models/flight-offer.model';
@@ -32,7 +32,7 @@ export class CreateFlightOfferComponent implements OnInit {
   flightOffersList: IFlightSearchData[]=[];
   showTable: boolean = false;
   searchParams:SearchParams = new SearchParams("","","","",0,false)
-
+  
   constructor(private service: LowCostFlightApiService) { }
 
   ngOnInit(): void {
@@ -82,10 +82,10 @@ export class CreateFlightOfferComponent implements OnInit {
       }
   }
   onChildCallReset(){
-
-    this.flightOffersList=[];
-    this.showTable =false;
-    this.fromLocationTemplate = true;
+    window.location.reload();
+    //this.flightOffersList=[];
+    //this.showTable =false;
+    //this.fromLocationTemplate = true;
   }
 }
 

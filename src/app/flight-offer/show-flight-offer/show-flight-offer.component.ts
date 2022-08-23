@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { SearchParams, IFlightParameters } from 'src/app/models/flight-param';
 import { IFlightSearchData } from 'src/app/models/flight-offer.model';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { LowCostFlightApiService } from 'src/app/low-cost-flight-api.service';
 
 
 @Component({
@@ -11,7 +12,6 @@ import { Observable } from 'rxjs';
 })
 export class ShowFlightOfferComponent implements OnInit {
 
-  constructor() { }
 
   ngOnInit(): void {
   }
@@ -21,9 +21,9 @@ export class ShowFlightOfferComponent implements OnInit {
   @Input() result:IFlightSearchData[]=[];
   @Output("onChildCallReset") onChildCallReset: EventEmitter<any> = new EventEmitter();
 
+  
   resetSearch(){
     this.onChildCallReset.emit();
   }
-
-
+  
 }

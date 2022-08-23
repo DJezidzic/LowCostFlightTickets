@@ -1,6 +1,6 @@
 <h1><strong>Find flight deals around the world</strong></h1>
     <hr>
-    <form >
+    <form #searchform="ngForm">
             <div *ngIf="fromLocationTemplate">
                 <label for=""><h3>From where:</h3></label>
                 <input type="text" class="form-control" name="from" [(ngModel)]="from" (keypress)="handleFromLocation()">

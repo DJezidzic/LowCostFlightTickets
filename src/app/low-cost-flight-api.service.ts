@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, VirtualTimeScheduler } from 'rxjs';
+import { BehaviorSubject, Observable, VirtualTimeScheduler } from 'rxjs';
 import { ILocation } from './models/location.model';
 import { environment } from 'src/environments/environment';
 import { IFlightOffer } from './models/flight-offer.model';
@@ -11,6 +11,8 @@ import { SearchParams } from './models/flight-param';
 })
 export class LowCostFlightApiService {
 
+  private _loading = new BehaviorSubject<boolean>(false);
+  public readonly loading$ = this._loading.asObservable();
   private lowcostflightApiUrl = environment.lowCostApiUrl;
 
   constructor(private http:HttpClient) { }
@@ -25,4 +27,12 @@ export class LowCostFlightApiService {
    // Najbolje koristit post, gdje kad napravimo subscribe u create-flight komponenti obradimo response po
     // modelu koji kreiramo unutar /models
 
+
+  show() {
+      this._loading.next(true);
+  }
+  
+  hide() {
+      this._loading.next(false);
+  }
 }

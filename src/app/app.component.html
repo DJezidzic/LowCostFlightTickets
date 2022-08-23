@@ -1,3 +1,4 @@
 <div class="container">
   <app-flight-offer></app-flight-offer>
 </div>
+<mat-progress-spinner [mode]="'indeterminate'" *ngIf="loading$ | async"> </mat-progress-spinner>
