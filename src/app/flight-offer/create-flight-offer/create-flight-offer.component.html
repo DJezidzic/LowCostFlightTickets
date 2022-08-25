@@ -24,20 +24,24 @@
             </div>
             <div *ngIf="departureDateTemplate">
               <label for=""><h3>Departure date:</h3></label>
-              <input type="date" class="form-control" name="departureDate" [(ngModel)]="departureDate">
+              <input type="date" #departuredate="ngModel" class="form-control" name="departureDate" [(ngModel)]="departureDate" required>
               <br>
               <label for=""><h3>Return date:</h3></label>
-              <input type="date" class="form-control" name="returnDate" [(ngModel)]="returnDate">
+              <input type="date" #returndate="ngModel" class="form-control" name="returnDate" [(ngModel)]="returnDate" required>
               <br>
               <label for=""><h3>Number of adults</h3></label>
-              <input type="number" class="form-control" name="adults" [(ngModel)]="adults">
+              <input type="number" #adult="ngModel" class="form-control" name="adults" [(ngModel)]="adults" required>
               <br>
               <label class="form-check-label fw7 h5 mb0">
                 Without stopping?
-                <input type="checkbox" [checked]="nonStop" class="form-check-input">
+                <input type="checkbox" [checked]="nonStop" class="form-check-input" required>
               </label>
+              <div *ngIf="departuredate.invalid && (departuredate.dirty || departuredate.touched)" class="alert"></div>
+              <div *ngIf="returndate.invalid && (returndate.dirty || returndate.touched)" class="alert"></div>
+              <div *ngIf="adult.invalid && (adult.dirty || adult.touched)" class="alert"></div>
               <br>
-              <button class="btn btn-secondary" (click)="onFindFlight()" [ngStyle]="{'width': '100%'}">Find Flights</button>
+              <button class="btn btn-secondary" (click)="onFindFlight()" [ngStyle]="{'width': '100%'}" 
+              [disabled]="(!searchform.valid || adult.untouched)">Find Flights</button>
             </div>
     </form>
     <app-show-flight-offer *ngIf="showTable" [params]="searchParams"
